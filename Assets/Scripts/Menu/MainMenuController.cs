@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField]
-    private Object nextScene;
+    private string nextScene;
 
     public void OnClickPlay() {
-        SceneManager.LoadScene(nextScene.name);
+        SceneManager.LoadScene(nextScene);
         Debug.Log("Play");
     }
 
