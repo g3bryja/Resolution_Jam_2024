@@ -22,6 +22,17 @@ public class DropPodController : MonoBehaviour
 
     private int direction = 0;
     private int prevDirection = 0;
+    private float leftBound;
+    private float rightBound;
+
+    private void Awake() {
+        leftBound = Camera.main.ScreenToWorldPoint(Vector2.zero).x;
+        rightBound = Camera.main.ScreenToWorldPoint(Vector2.right * Screen.width).x;
+
+        float offset = transform.localScale.x / 2;
+        leftBound += offset;
+        rightBound -= offset;
+    }
 
     private void Update() {
         direction = (int)PlayerInput.instance.DirectionalInput.x;
@@ -31,7 +42,9 @@ public class DropPodController : MonoBehaviour
     }
 
     private void Move() {
-        transform.position += Vector3.right * moveSpeed * direction * Time.deltaTime;
+        if (transform.position.x > leftBound && transform.position.x < rightBound) {
+            transform.position += Vector3.right * moveSpeed * direction * Time.deltaTime;
+        }
     }
 
     private void Rotate() {

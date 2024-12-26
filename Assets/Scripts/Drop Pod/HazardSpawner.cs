@@ -16,12 +16,10 @@ public class HazardSpawner : MonoBehaviour
     private float elapsedTime = 0.0f;
 
     private ObjectPool pool;
-    private Camera camera;
     private Vector2 leftBound;
     private Vector2 rightBound;
 
     private void Awake() {
-        camera = (Camera)FindObjectOfType(typeof(Camera));
         GetBounds();
         InitializeObjectPool();
     }
