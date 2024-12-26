@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class ScoreManager : MonoBehaviour
     
     [SerializeField]
     private TextMeshProUGUI scoreText;
+
+    [SerializeField]
+    float punchForce = 1.2f;
+    
+    [SerializeField]
+    float punchDuration = 0.3f;
+    
 
     private void Awake() {
         if (instance == null) {
@@ -36,5 +44,9 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScore() {
         scoreText.text = score.ToString();
+        if (DOTween.IsTweening(scoreText.transform)) {
+            DOTween.Kill(true, transform);
+        }
+        scoreText.transform.DOPunchScale(Vector3.one * punchForce, punchDuration, 1, 0);
     }
 }
