@@ -19,6 +19,12 @@ public class DropPodController : MonoBehaviour
 
     [SerializeField]
     private Transform model;
+    
+    [SerializeField]
+    private float onHitDuration = 0.2f;
+    
+    [SerializeField]
+    private float onHitStrength = 0.7f;
 
     private int direction = 0;
     private int prevDirection = 0;
@@ -56,5 +62,12 @@ public class DropPodController : MonoBehaviour
 
         Quaternion target = Quaternion.Euler(Vector3.forward * targetRotation);
         model.rotation = Quaternion.Slerp(model.rotation, target,  Time.deltaTime * rotationSmoothing);
+    }
+
+    public void OnAsteroidCollision(Vector3 direction) {
+        if (DOTween.IsTweening(model)) {
+            DOTween.Kill(false, model);
+        }
+        model.DOPunchPosition(onHitStrength * direction, onHitDuration);
     }
 }

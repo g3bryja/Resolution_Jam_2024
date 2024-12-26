@@ -57,6 +57,9 @@ public class Asteroid : MonoBehaviour
                 pooledObject.Despawn();
             }
         } else if (collision.gameObject.GetComponent<DropPodController>()) {
+            Vector3 collisionVector = collision.contacts[0].point - transform.position;
+            collisionVector.Normalize();
+            collision.gameObject.GetComponent<DropPodController>().OnAsteroidCollision(collisionVector);
             ScoreManager.instance.SubtractScore(score);
             pooledObject.Despawn();
         }
