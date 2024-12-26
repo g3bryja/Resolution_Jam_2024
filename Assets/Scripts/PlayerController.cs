@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.velocity = Vector3.zero;
+            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, smoothing);
 
         }
 
