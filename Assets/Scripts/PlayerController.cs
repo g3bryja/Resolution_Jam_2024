@@ -13,7 +13,11 @@ public class PlayerController : MonoBehaviour
     private float movementY;
 
     //Initally set to zero as on Unity app, you can set the speed, so more to update later then.
-    public float speed = 0;
+    [SerializeField]
+    private float speed = 10;
+
+    [SerializeField]
+    private float smoothing = 0.5f;
 
 
     // Start is called before the first frame update
@@ -45,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, smoothing);
+            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * smoothing);
 
         }
 
