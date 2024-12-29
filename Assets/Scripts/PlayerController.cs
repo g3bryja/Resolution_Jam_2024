@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+// using UnityEngine.InputSystem;
 
 
 public class PlayerController : MonoBehaviour
@@ -28,9 +28,10 @@ public class PlayerController : MonoBehaviour
     }
 
     //Used for player input movement
-    void OnMove(InputValue movementValue)
+    void OnMove(/*InputValue movementValue*/)
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
+        // Vector2 movementVector = movementValue.Get<Vector2>();
+        var movementVector = new Vector2();
         movementX = movementVector.x;
         movementY = movementVector.y;
 
