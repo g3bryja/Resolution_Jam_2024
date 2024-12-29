@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     void OnMove(/*InputValue movementValue*/)
     {
         // Vector2 movementVector = movementValue.Get<Vector2>();
-        var movementVector = new Vector2();
+        var movementVector = PlayerInput.instance.DirectionalInput;
         movementX = movementVector.x;
         movementY = movementVector.y;
 
